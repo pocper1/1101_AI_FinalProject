@@ -3,6 +3,7 @@ import pyzbar.pyzbar as pyzbar
 import numpy as np
 
 def barcode(gray):
+    # test
     texts = pyzbar.decode(gray)
     if texts == []:
         angle = barcode_angle(gray)
