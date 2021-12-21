@@ -38,6 +38,6 @@ def get_books_list():
             
 
 # 使用者輸入參數
-bookName=input('推薦書籍:')
+bookName=input('isbn:')
 
-result = 
+result = get_books_list()
