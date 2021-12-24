@@ -1,7 +1,7 @@
 import requests
 from lxml import etree
 headers = {"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36"}
-res = requests.get("https://www.books.com.tw/web/books/", headers=headers)#柏克萊-中文書
+res = requests.get("http://www.books.com.tw/web/sys_hourstop/home?loc=P_003_001",headers=headers)
 content = res.content.decode()
 
 html = etree.HTML(content)
