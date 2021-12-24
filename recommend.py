@@ -8,6 +8,6 @@ html = etree.HTML(content)
 title = html.xpath('//body/div[4]/div/div[2]/div[1]/div/div[1]/ul/li/div[2]/h4/a/text()')
 price = html.xpath('//body/div[4]/div/div[2]/div[1]/div/div[1]/ul/li/div[2]/ul/li/strong[last()]/b/text()')
 
-print ("推薦書籍:")
+print ("博客來網路書店排名書籍推薦:")
 for i,j in zip(title,price):
   print(i,j)
