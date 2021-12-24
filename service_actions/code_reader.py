@@ -58,16 +58,18 @@ def rotate_bound(image, angle):
 
     return cv2.warpAffine(image, M, (nW, nH))
 
-image=cv2.imread(r"C:/Users/tc_li.LAPTOP-80MLFSGM/Desktop/AI/bar_1.jpg") #檔名無法使用中文
-gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-texts = barcode(gray)
-print(texts)
-if texts==[]:
-    print("未識別成功")
-else:
-    for text in texts:
-        tt = text.data.decode("utf-8")
-    print("識別成功")
-    print(tt)
+def receive_image():
+    image=cv2.imread(r"C:/Users/tc_li.LAPTOP-80MLFSGM/Desktop/AI/bar_1.jpg") #檔名無法使用中文
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    texts = barcode(gray)
+    print(texts)
+    
+    if texts==[]:
+        print("未識別成功")
+    else:
+        for text in texts:
+            tt = text.data.decode("utf-8")
+        print("識別成功")
+        print(tt)
 
 #程式來源：https://tw511.com/a/01/22634.html

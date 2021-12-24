@@ -24,7 +24,7 @@ url='https://ncu.primo.exlibrisgroup.com/primaws/rest/pub/pnxs'
 # https://ncu.primo.exlibrisgroup.com/primaws/rest/pub/pnxs?blendFacetsSeparately=false&disableCache=false&getMore=0&inst=886UST_NCU&lang=en&limit=25&newspapersActive=false&newspapersSearch=false&offset=0&pcAvailability=false&q=any,contains,python&qExclude=&qInclude=&rapido=false&refEntryActive=false&rtaLinks=true&scope=usttest&skipDelivery=Y&sort=rank&tab=Everything&vid=886UST_NCU:886UST_NCU
 
 # 抓取網頁的主程式
-def get_books_list():
+def get_books_list(bookName):
     #抓取網頁
     res = requests.get(get_url(bookName), headers=header)
     res.encoding = 'utf-8'     #轉換編碼至UTF-8
@@ -75,6 +75,6 @@ def get_url(bookName):
     return news_list_url
 
 # 使用者輸入參數
-bookName=input('想搜尋國立中央大學圖書:')
-
-result = get_books_list()
+def receive_bookdata():
+    bookName=input('想搜尋國立中央大學圖書:')
+    result = get_books_list(bookName)
