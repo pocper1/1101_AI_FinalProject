@@ -37,6 +37,7 @@ def handle_message(event):
         
         print('receive text', recrive_text)
         if '查詢' in recrive_text:
+            # 所有事情在service_actions做
            call_main(event)    
 
 @handler.add(PostbackEvent)
