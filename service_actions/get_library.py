@@ -29,22 +29,41 @@ def get_books_list(bookName):
     res = requests.get(get_url(bookName), headers=header)
     res.encoding = 'utf-8'     #轉換編碼至UTF-8
     rawdata = res.json()
-    
-        
+    book_data =[]
+    ISBN = []
     # data = json.loads(res)
     for i in range(0,25):
         print("第 "+str(i)+" 本")
         print("書名: "+str(rawdata["docs"][i]["pnx"]["display"]["title"][0]))
         isbn = "isbn" in rawdata["docs"][i]["pnx"]["addata"]
+       
         if(isbn):
             print("ISBN", end=' ')
-            for i in rawdata["docs"][i]["pnx"]["addata"]["isbn"]:
-                print(str(i),end=' ')
+            for j in rawdata["docs"][i]["pnx"]["addata"]["isbn"]:
+                ISBN.append(str(j))
+                print("ISBN"+str(j),end=' ')
+            tmp ={
+                '次數':i, 
+                '書名': rawdata["docs"][i]["pnx"]["display"]["title"][0],
+                'ISBN':ISBN
+            }
+                
+            
             print("\n")
         else:
+            tmp ={
+                '次數':i, 
+                '書名': rawdata["docs"][i]["pnx"]["display"]["title"][0],
+                'ISBN': 0
+            }
             print("找不到")
             print("\n")
-            
+        
+        book_data.append(tmp.copy())
+        ISBN.clear()
+        tmp.clear()
+    return book_data
+               
 # 抓取網頁連結
 def get_url(bookName):    
     blendFacetsSeparately='false'
@@ -75,6 +94,9 @@ def get_url(bookName):
     return news_list_url
 
 # 使用者輸入參數
-def receive_bookdata():
-    bookName=input('想搜尋國立中央大學圖書:')
+def receive_bookdata(bookName):
     result = get_books_list(bookName)
+    
+    print("result:\n")
+    print(result)
+    return result
