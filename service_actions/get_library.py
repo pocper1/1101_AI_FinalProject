@@ -97,6 +97,11 @@ def get_url(bookName):
 def receive_bookdata(bookName):
     result = get_books_list(bookName)
     
-    print("result:\n")
-    print(result)
-    return result
+    # print("result:\n")
+    # print(result)
+    str_message=''
+    i=0
+    for book in result:
+        i+=1
+        str_message += f"第{i}本: {book['書名']} {book['ISBN']}\n"
+    return str_message

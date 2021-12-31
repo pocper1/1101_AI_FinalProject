@@ -1,5 +1,5 @@
 # import flask related
-from flask import Flask, request, abort, url_for
+from flask import Flask, request, abort, url_for, render_template
 from urllib.parse import parse_qsl, parse_qs
 
 from linebot.models import events
@@ -10,6 +10,10 @@ import random
 from service_actions.main_func import *
 # create flask server
 app = Flask(__name__)
+
+@app.route("/")
+def homePage():
+    return render_template('index.html')
 
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -46,6 +50,7 @@ def handle_message(event):
         else:
             messages=[]
             list_of_book = receive_bookdata(recrive_text)
+            print(type(list_of_book))
             messages.append(TextSendMessage(text=list_of_book))
             line_bot_api.reply_message(event.reply_token, messages)
             
