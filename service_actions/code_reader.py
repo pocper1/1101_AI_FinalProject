@@ -1,10 +1,10 @@
 import cv2
-import pyzbar.pyzbar as pyzbar
+from pyzbar.pyzbar import decode
 import numpy as np
 
 def barcode(gray):
     # test
-    texts = pyzbar.decode(gray)
+    texts = decode(gray)
     if texts == []:
         angle = barcode_angle(gray)
         if angle < -45:
@@ -22,7 +22,7 @@ def bar(image, angle):
     gray = image
     bar = rotate_bound(gray, 0 - angle)
     roi = cv2.cvtColor(bar, cv2.COLOR_BGR2RGB)
-    texts = pyzbar.decode(roi)
+    texts = decode(roi)
     return texts
 
 
