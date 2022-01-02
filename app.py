@@ -11,8 +11,8 @@ from service_actions.main_func import *
 # create flask server
 app = Flask(__name__)
 
-@app.route("/")
-def homePage():
+@app.route('/')
+def index():
     return render_template('index.html')
 
 @app.route("/callback", methods=['POST'])
